@@ -12,7 +12,9 @@ for (var i = 0; i < 6; i++) {
         .then(res => {
             const $ = cheerio.load(res.data);
             $(".category-template-down").each((index, element) => {
-                stream.write($(element).children().last().attr('href') + "," + "\n")
+                $(".category-template-title").each((i,e)=>{
+                    stream.write("Name:- "+$(e).children().attr('title')+ "\n"+"Landing Page URL:- "+"https://apkpure.com"+$(e).children().attr('href')+ "\n"+"Download Link:- "+"https://apkpure.com"+$(element).children('a').last().attr('href') + "," + "\n"+ "\n")
+                })
             })
         })
 }
